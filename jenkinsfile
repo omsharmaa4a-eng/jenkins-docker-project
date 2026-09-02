@@ -1,0 +1,59 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/omsharmaa4a-eng/jenkins-docker-project.git
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t jenkins-docker-app .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh '''
+                    docker stop jenkins-app || true
+                    docker rm jenkins-app || true
+                    docker run -d --name jenkins-app -p 8080:80 jenkins-docker-app
+                '''
+            }
+        }
+    }
+}
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t jenkins-docker-app .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh '''
+                    docker stop jenkins-app || true
+                    docker rm jenkins-app || true
+                    docker run -d --name jenkins-app -p 8080:80 jenkins-docker-app
+                '''
+            }
+        }
+    }
+}
