@@ -5,7 +5,12 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Jenkins is working!'
-                echo 'GitHub repository: https://github.com/omsharmaa4a-eng/jenkins-docker-project.git'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t jenkins-docker-app .'
             }
         }
     }
