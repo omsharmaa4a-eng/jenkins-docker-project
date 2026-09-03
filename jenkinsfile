@@ -13,5 +13,11 @@ pipeline {
                 sh 'docker build -t jenkins-docker-app .'
             }
         }
+
+        stage('Deploy to EC2') {
+            steps {
+
+            }
+        }
     }
 }
