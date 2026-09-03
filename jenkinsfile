@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -16,8 +17,13 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                echo 'Deploying to EC2...'
+                sshagent(['ec2-ssh-key']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@13.232.154.142 "sudo docker pull nginx:latest"
+                    '''
+                }
             }
         }
     }
 }
+```
